@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Location</title>
+</head>
+<body>
+    <h1>Click the button to get your location</h1>
+    <button onclick="getLocation()">Get Location</button>
+    <p id="location"></p>
+
+    <script>
+        function getLocation() {
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('location').innerText = `Location: ${data.city}, ${data.region}, ${data.country}`;
+                })
+                .catch(error => {
+                    document.getElementById('location').innerText = 'Error getting location';
+                });
+        }
+    </script>
+</body>
+</html>
